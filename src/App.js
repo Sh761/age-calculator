@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./styles.css";
 
-function App() {
+export default function App() {
+  var currentYear = 2023;
+  const [birthYear, setbirthYear] = useState(0);
+  const [age, setAge] = useState(0);
+
+  function clickHandler() {
+    var theAge = currentYear - birthYear;
+    setAge(theAge);
+  }
+
+  function inputChangeHandler(e) {
+    setbirthYear(e);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <h1>Enter your year of birth</h1>
+      <input onChange={(e) => inputChangeHandler(e.target.value)} />
+      <div>
+        {" "}
+        <button onClick={clickHandler}>Submit</button>
+      </div>
+
+      <div>The age is: {age}</div>
     </div>
   );
 }
-
-export default App;
